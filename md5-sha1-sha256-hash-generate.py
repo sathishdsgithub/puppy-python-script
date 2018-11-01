@@ -1,3 +1,9 @@
+#######################################################################
+This python code generates md5 , sha1 , sha256 hash value for input file
+example : python md5-sha1-sha256-hash-generate.py
+ Enter the the filename: file.exe
+#######################################################################
+
 from py_essentials import hashing as hs
 
 inputFile = raw_input("Enter the filename or path: ")
