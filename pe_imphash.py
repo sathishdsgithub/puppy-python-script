@@ -4,6 +4,8 @@ import pefile
 import hashlib
 import xlsxwriter
 
+# Reference https://malwology.com/2018/08/24/python-for-malware-analysis-getting-started/
+
 
 if __name__ == "__main__":
 
