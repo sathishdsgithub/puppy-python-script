@@ -27,4 +27,6 @@ for hash_value in file:
 
 Example :
 
-        python VT_check_av_vendor.py file_name_hash | grep "McAfee" | awk '{print $1}' | uniq
+        # python VT_check_av_vendor.py file_name_hashes > out.txt
+        
+        # cat out.txt | grep "McAfee" | awk '{print $1}' | uniq
