@@ -1,0 +1,30 @@
+import urllib
+import urllib2
+import json
+import sys
+
+file = open(sys.argv[1], "r")
+vt_url = "https://www.virustotal.com/vtapi/v2/file/report"
+api_key = "api_key"
+for hash_value in file:
+    hash_value = hash_value.rstrip("\n\r")
+    parameters = {'apikey': api_key, 'resource': hash_value}
+    encoded_parameters = urllib.urlencode(parameters)
+    request = urllib2.Request(vt_url, encoded_parameters)
+    response = urllib2.urlopen(request)
+    json_response = json.loads(response.read())
+    if json_response['response_code']:
+        detections = json_response['positives']
+        total = json_response['total']
+        scan_results = json_response['scans']
+
+        for av_name, av_data in scan_results.items():
+            print "\t%s ## %s ==> %s" %(hash_value,av_name, av_data['result'])
+
+    else:
+        print "No AV detection %s" % (hash_value)
+        
+
+Example :
+
+        python VT_check_av_vendor.py file_name_hash | grep "McAfee" | awk '{print $1}' | uniq
