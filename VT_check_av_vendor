@@ -1,3 +1,6 @@
+# This Python Scripts helps to find the AV coverage from VirusTotal for specific Vendor 
+# You can import set of hashes in a file and use the code to get the coverage status
+
 import urllib
 import urllib2
 import json
