@@ -17,16 +17,20 @@ for hash_value in file:
         detections = json_response['positives']
         total = json_response['total']
         scan_results = json_response['scans']
-
         for av_name, av_data in tqdm(scan_results.items()):
-            print "\t%s ## %s ==> %s" %(hash_value,av_name, av_data['result'])
-
+            av_vendor_name = str(av_name)
+            av_result = str(av_data['result'])
+            if ((av_vendor_name == "McAfee" or av_vendor_name == "McAfee-GW-Edition") and av_result == "None"):
+                print "\t%s ## %s ==> %s" % (hash_value, av_name, av_data['result']) + '\n'
     else:
-        print "No AV detection %s" % (hash_value)
+        print "\t%s" % (hash_value) + "==> No AV detection "
+
+
+
         
 
 Example :
 
         # python VT_check_av_vendor.py file_name_hashes > out.txt
         
-        # cat out.txt | grep "McAfee" | awk '{print $1}' | uniq
+        # cat out.txt 
