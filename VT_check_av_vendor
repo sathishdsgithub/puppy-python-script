@@ -1,14 +1,36 @@
 # This Python Scripts helps to find the AV coverage from VirusTotal for specific Vendor 
 # You can import set of hashes in a file and use the code to get the coverage status
 
+#!/user/bin/python
 import urllib
 import urllib2
 import json
 import sys
 from tqdm import tqdm
-file = open(sys.argv[1], "r")
+import argparse
+
+# Checks the input arguments with -h help
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-i",help="Please specify the input file that contains hashes")
+args = parser.parse_args()
+
+# Copies the output to the file out.txt
+
+sys.stdout = open("out.txt", "w")
+
+# Gets the input filename example: -i hashes.txt
+if args.i:
+    file = open(args.i,"r")
+
 vt_url = "https://www.virustotal.com/vtapi/v2/file/report"
-api_key = "api_key"
+
+# Enter your api_key to query the VT database
+
+api_key = "ENTER_YOUR_API_KEY_HERE"
+
+# Stores the hash_value from the file
+
 for hash_value in file:
     hash_value = hash_value.rstrip("\n\r")
     parameters = {'apikey': api_key, 'resource': hash_value}
@@ -16,24 +38,41 @@ for hash_value in file:
     request = urllib2.Request(vt_url, encoded_parameters)
     response = urllib2.urlopen(request)
     json_response = json.loads(response.read())
+    
+# JSON output format    
     if json_response['response_code']:
         detections = json_response['positives']
         total = json_response['total']
         scan_results = json_response['scans']
+        
+# Checks the specific AV_vendor for the signature coverage example: Mcafee 
+
         for av_name, av_data in tqdm(scan_results.items()):
             av_vendor_name = str(av_name)
             av_result = str(av_data['result'])
+
             if ((av_vendor_name == "McAfee" or av_vendor_name == "McAfee-GW-Edition") and av_result == "None"):
-                print "\t%s ## %s ==> %s" % (hash_value, av_name, av_data['result']) + '\n'
-    else:
-        print "\t%s" % (hash_value) + "==> No AV detection "
+                 print "\t%s ## %s ==> %s" % (hash_value, av_name, av_data['result'])
 
+# Else print the AV hash file not found
 
+     else:
+         print "\t%s" % (hash_value) + " ==> No AV detection "
 
-        
+#####################################################################################################################      
 
 Example :
 
-        # python VT_check_av_vendor.py file_name_hashes > out.txt
+Input the file with hash value and the output gets stored in the file name out.txt
+
+$ ./VT_check.py -h
+usage: VT_check.py [-h] [-i I]
+optional arguments:
+  -h, --help  show this help message and exit
+  -i I        Please specify the input file that contains hashes
+
+$ ./VT_check.py -i hashes.txt
         
-        # cat out.txt 
+$ cat out.txt 
+        024ddd0f64a1d5ceaba3cced5bdf6e7ffd6d4f2fe018dda9a97432d672382d25 ## McAfee ==> None
+        0b73f6a9b0b20a43c1cbc6a1c0df4004fa2263be41b500dfe8f4b6cd97316178 ==> No AV detection 
