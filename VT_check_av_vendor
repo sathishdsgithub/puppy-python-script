@@ -2,7 +2,7 @@ import urllib
 import urllib2
 import json
 import sys
-
+from tqdm import tqdm
 file = open(sys.argv[1], "r")
 vt_url = "https://www.virustotal.com/vtapi/v2/file/report"
 api_key = "api_key"
@@ -18,7 +18,7 @@ for hash_value in file:
         total = json_response['total']
         scan_results = json_response['scans']
 
-        for av_name, av_data in scan_results.items():
+        for av_name, av_data in tqdm(scan_results.items()):
             print "\t%s ## %s ==> %s" %(hash_value,av_name, av_data['result'])
 
     else:
