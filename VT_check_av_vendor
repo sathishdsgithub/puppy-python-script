@@ -8,6 +8,16 @@ import json
 import sys
 from tqdm import tqdm
 import argparse
+import os
+
+if __name__ == "__main__":
+
+# Specify -h to know the input parameters
+    try:
+        arg1 = sys.argv[1]
+    except IndexError:
+        print "Usage: " + "python" + os.path.basename(__file__) + " -h"
+        sys.exit(1)
 
 # Checks the input arguments with -h help
 
@@ -64,6 +74,9 @@ for hash_value in file:
 Example :
 
 Input the file with hash value and the output gets stored in the file name out.txt
+
+$ python VT_check.py
+Usage: python VT_check.py -h
 
 $ ./VT_check.py -h
 usage: VT_check.py [-h] [-i I]
