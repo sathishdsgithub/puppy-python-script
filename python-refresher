@@ -1,0 +1,208 @@
+ name = "sam john"
+
+ greeting = "Hello Dude"
+
+ print (greeting)
+
+ newvar = f"Hello {name}"
+
+ print (newvar)
+
+ name = input("Enter the name please : ")
+ greeetings = "Hello, {}"
+ with_name = greeetings.format(name)
+ print (with_name)
+
+ name = input("Enter the name please : ")
+ age = input("Enter your age please : ")
+ formating = "Hello {} and your age is {}"
+ with_details = formating.format(name, age)
+ print (with_details)
+
+ size_input = input("enter the square value in square feet: ")
+ square_feet = int(size_input)
+ square_meter = square_feet / 10.8
+ print(f"The size of the {square_feet} in sq meters is {square_meter:.2f} ")
+
+ try:
+     age = int(input("Please enter your age: "))
+     months = age * 12
+     seconds = float(age) * 31536000
+     print(f"Your age {age} in months is {months} and in seconds is {seconds}")
+
+ except ValueError:
+     print('Non-numeric data found .')
+
+ l = ["cat", "dog", "lion"]
+ t = ("man", "animal", "plant")
+ s = {"bag", "laptop", "pencil"}
+
+ boy1 = {"bag", "Laptop" ,"ipod", "headphones"}
+ boy2 = {"Laptop", "bag", "pencil", "headphones"}
+
+ diff_b1_b2 = boy1.difference(boy2)
+ diff_b2_b1 = boy2.difference(boy1)
+ total_b1_b2 = boy1.union(boy2)
+ both_contains = boy1.intersection(boy2)
+ print (f"the difference between boy1 and boy2 is {diff_b1_b2} which means boy2 does not have {diff_b1_b2}")
+ print (f" Difference between boy2 and boy1 is {diff_b2_b1} which means boy1 does not have {diff_b2_b1}")
+ print (f"The totale items for both the b1 and b2 is {total_b1_b2}")
+ print (f"both contains the items b1 and b2 is {both_contains}")
+
+ day_of_week = input("Enter the day of week : ").lower()
+
+ if day_of_week == "monday":
+     print ("Great day for this week")
+ elif day_of_week == "tuesday":
+     print("Its tuesday ")
+ else:
+     print("No this is not monday")
+
+ frieds_list = ["John", "Merry", "Anderson"]
+ print("John" in frieds_list)
+
+
+ movies = ["Jannal", "Matrix", "Pariyarum perumal"]
+ input_movie = str(input("Enter the movie name: "))
+ print(input_movie in movies)
+
+ guess_num = 8
+ input_num = int(input("enter the num: "))
+ if input_num == guess_num:
+     print("Sucess!!!")
+ elif abs(guess_num - input_num ) == 1:
+     print("Almost thr")
+ else:
+     print("Get lost !!!")
+
+
+ guess_num = 8
+
+ while True:
+     input_play = str(input("want to play: Y/n: \n"))
+     if input_play == "n":
+         break
+     else:
+         input_num = int(input("Enter the nuber: "))
+         if input_num == guess_num:
+             print("Sucess!!!")
+         elif abs(guess_num - input_num) == 1:
+             print("Almost thr")
+         else:
+             print("Get lost !!!")
+
+ my_list = ["Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop"]
+ for list in my_list:
+     print (f"I have the things like {list}")
+
+
+ my_list = ["Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop"]
+ for list in range(5):
+     print (f"I have the things like {my_list[list]}")
+
+ my_list = ["Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop"]
+ for list in range(5,8):
+     print (f"I have the things like {my_list[list]}")
+
+ my_list = ["Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop","Ball",
+            "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop"]
+ for list in range(0,8,2):
+     print (f"I have the things like {my_list[list]}")
+
+
+ my_list = ["Ball", "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop","Ball",
+            "Bat", "Cycle", "Laptop","Ball", "Bat", "Cycle", "Laptop"]
+ print(f"Total items in mylist is ", len(my_list))
+
+ grades = [35,67,98,100,100]
+ total = 0
+ amount = len(grades)
+ for marks in grades:
+     total += marks
+ print (f"total is {total / amount}")
+
+
+ grades = [35,67,98,100,100]
+ total = sum(grades)
+ amount = len(grades)
+
+ print (f"total is {total / amount}")
+
+ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+ evens = []
+ for number in numbers:
+     if (number % 2 == 0):
+         evens.append(number)
+
+ print (f"{evens}")
+
+
+ numbers = [1, 3, 5, 7, 9, 11, 13, 15]
+  doubled = [num * 2 for num in numbers]
+ 
+  print (doubled)
+
+ friends_list = ["Sam", "Anderson", "Sanatha", "Shalini","Zeebra", "hdsjkhskdsl", "yqiyeqluwyele", "sathishds"]
+ new_list = []
+ for friends in friends_list:
+     if friends.startswith("S"):
+         new_list.append(friends)
+     elif friends.startswith("s"):
+         new_list.append(friends)
+ print(new_list)
+
+ friends_list = ["Sam", "Anderson", "Sanatha", "Shalini","Zeebra", "hdsjkhskdsl", "yqiyeqluwyele", "sathishds"]
+ new_list = [friend for friend in friends_list if friend.startswith("S")]
+ print(new_list)
+
+ dict_list = {"First_Name": "Sam", "Last_Name": "John", "Age": 24}
+ dict_list["Occupation"] = "IT support"
+ print (f'{dict_list["First_Name"]}is First Name and  the last name is {dict_list["Last_Name"]} and age is {dict_list["Age"]} and {dict_list["Occupation"]}')
+
+ dict_list = [{"First_Name": "Sam", "Last_Name": "John", "Age": 24},
+             {"First_Name": "Martin", "Last_Name": "Lukas", "Age": 34},
+             {"First_Name": "Jeff", "Last_Name": "Mark", "Age": 44},
+             {"First_Name": "Jones", "Last_Name": "alfred", "Age": 54}]
+
+ print(dict_list["First_Name"])
+ get_name = input("Enter the first name to the complete details ")
+ matches = []
+ for getlist in dict_list:
+     if get_name.lower() in (dict_list[getlist]):
+         matches.append(get_name)
+         print (f'{getlist} is  {dict_list[getlist]}')
+
+ list = ['william shakespeare', 'shakira', 'tom ford', 'tim ford']
+
+ def get_matching_term(input, list):
+     matches = []
+     for word in list:
+         if input.lower() in word.lower():
+             matches.append(word)
+     return matches
+
+
+ thing_to_match = raw_input("Enter name to find:")
+ matches = get_matching_term(thing_to_match, list)
+
+ for idx, match in enumerate(matches):
+     print("Match " + str((idx + 1)) + ": " + match)
+
+dict_list = [{"First_Name": "Sam", "Last_Name": "John", "Age": 24},
+             {"First_Name": "Martin", "Last_Name": "Lukas", "Age": 34},
+             {"First_Name": "Jeff", "Last_Name": "Mark", "Age": 44},
+             {"First_Name": "Jones", "Last_Name": "alfred", "Age": 54}]
+
+ getdetails = input("Name: ")
+
+ for i in range(len(dict_list)):
+     if (getdetails in dict_list[i]["First_Name"]):
+         print(f'Details are  {dict_list[i]}')
+
+    print(dict_list[i]["First_Name"])
+ print(f'Details are  {dict_list[i]}')
+
+new_plist = {"John":28, "Martin": 34, "Lamda": 89}
+for fname, fdetails in new_plist.items():
+    print (f"{fname}: {fdetails}")
